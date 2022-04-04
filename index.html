@@ -1,0 +1,149 @@
+<?php
+//SKYline连飞地图--SKYline Flyleague版权所有
+?>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="public/img/logo.jpg">
+    <title>SKYline天际模飞俱乐部连飞地图|SKYline Online Map</title>
+
+    <link rel="stylesheet" href="css/mdui.min.css" />
+    <script src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="main.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="public/leaflet.rotatedMarker.js"></script>
+    <link rel="stylesheet" href="public/main.css" />
+
+    <script type="text/javascript">
+((function() {
+	var callbacks = [],
+	timeLimit = 50,
+	open = false;
+	setInterval(loop, 1);
+	return {
+		addListener: function(fn) {
+			callbacks.push(fn);
+		},
+		cancleListenr: function(fn) {
+			callbacks = callbacks.filter(function(v) {
+				return v !== fn;
+			});
+		}
+	}
+	function loop() {
+		var startTime = new Date();
+		debugger;
+		if (new Date() - startTime > timeLimit) {
+			if (!open) {
+				callbacks.forEach(function(fn) {
+					fn.call(null);
+				});
+			}
+			open = true;
+			window.stop();
+			alert('该功能已被禁止使用---来自SKYline Flyleague 连飞地图  https://skylineflyleague.cn ');
+			window.location.reload();
+		} else {
+			open = false;
+		}
+	}
+})())
+ 
+.addListener(function() {
+	window.location.reload();
+});
+</script>
+</head>
+
+<body class="mdui-appbar-with-toolbar" onload="initMap()" style="background-color: #20243F">
+    <div class="mdui-appbar mdui-appbar-fixed" style="color:aliceblue">
+        <div class="mdui-toolbar ">
+            <a href="#" class="mdui-typo-headline">SKYline天际模飞俱乐部连飞地图</a>
+            <a href="https://bbs.skylineflyleague.cn/" class="mdui-typo-title">论坛</a>
+            <a href="https://jq.qq.com/?_wv=1027&k=gJZGguLl" class="mdui-typo-title">官方QQ群</a>
+            <a href="https://chart.skylineflyleague.cn/v2.0/" class="mdui-typo-title">EFB</a>
+            <a href="https://skylineflyleague.cn/" class="mdui-typo-title">门户</a>
+
+            <div class="mdui-toolbar-spacer"></div>
+            <a href="javascript:void(0)" onclick="OpenOnline();" onmouseover="CloseOnline();"><i class="mdui-icon" style="font-size:20px;">在线列表</i></a>
+            <a href="javascript:refreshMapAjax();"><i class="mdui-icon" style="font-size:20px;">刷新地图</i></a>
+
+            <a href="http://121.5.10.201:2022/"><i class="mdui-icon" style="font-size:20px;">呼号注册</i></a>
+            <a href="javascript:void(0)" onclick="OpenAbout();" onmouseover="CloseAbout();"><i class="mdui-icon" style="font-size:20px;">关于</i></a>
+            <a><i class="mdui-icon material-icons">        </i></a>
+        </div>
+    </div>
+    <div id="map"></div>
+    <script type="text/javascript">
+        $(function () {
+        })
+        function OpenOnline() {
+            document.getElementById('online').style.display = 'block';
+        }
+        function CloseOnline() {
+            document.getElementById('online').style.display = 'none';
+        }
+        function OpenAbout() {
+            document.getElementById('about').style.display = 'block';
+        }
+        function CloseAbout() {
+            document.getElementById('about').style.display = 'none';
+        }
+    </script>
+    <!--SKYline连飞地图，SKYline Flyleague版权所有-->
+    <div class="online" id="online">
+        <br><br>
+        <div class="mdui-typo-body-2" style="width:360px;font-size:24px;text-align:center;">在线机组|PILOT</div>
+        <br>
+        <div class="mdui-table-fluid" id="pilot" style="width:360px;text-align:center">
+            <table class="mdui-table mdui-table-hoverable" style="width: 360px; text-align: center ">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;color:black;">呼号</th>
+                        <th style="text-align:center;color:black;">起飞</th>
+                        <th style="text-align:center;color:black;">落地</th>
+                    </tr>
+                </thead>
+                <tbody id="pilot-body">
+                </tbody>
+            </table>
+        </div>
+        <br><br>
+        <div class="mdui-typo-body-2" style="width:360px;font-size:24px;text-align:center;">在线管制|ATC</div>
+        <br>
+        <div class="mdui-table-fluid" id="atc" style="width: 360px; text-align: center ">
+            <table class="mdui-table mdui-table-hoverable" style="width: 360px; text-align: center">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;color:black;">呼号</th>
+                        <th style="text-align:center;color:black;">登录名</th>
+                        <th style="text-align:center;color:black;">等级</th>
+                    </tr>
+                </thead>
+                <tbody id="atc-body" style="width:360px;">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="about" id="about" >
+        <br><br>
+        <div class="mdui-typo-body-2" style="width:340px;font-size:24px;text-align:center;">关于连飞地图|ABOUT</div>
+        <br>
+        <div class="mdui-typo-body-2" style="width:340px;font-size:18px;text-align:center;">SKYline天际模飞俱乐部连飞地图</div>
+        <br />
+        <div class="mdui-typo-body-2" style="width:340px;font-size:24px;text-align:center;">版本信息</div>
+        <br>
+        <div class="mdui-typo-body-2" style="width:340px;font-size:16px;text-align:center;font-weight:bold;">· v1.2.0 目前版本(最新版)</div>
+        <div class="mdui-typo-body-2" style="width:340px;font-size:16px;text-align:center;">增加机组和管制员详细标牌，更新UI设置</div>
+        <br>
+        <div class="mdui-typo-body-2" style="width:340px;font-size:16px;text-align:center;">· v1.1.0  首个公开的版本</div>
+
+
+    </div>
+
+</body>
+</html>

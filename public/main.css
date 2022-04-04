@@ -1,0 +1,443 @@
+#map{
+    height: 100%;
+    z-index:0;
+}
+/*在线列表*/
+.online {
+    display:none;
+    position: fixed;
+    top: 80px;
+    right: 200px;
+    width: 360px;
+    height: 600px;
+    z-index: 2;
+    background-color: aliceblue;
+    border-radius: 10px;
+    box-shadow: 3px 3px 2px #ccc;
+}
+.about {
+    display: none;
+    position: fixed;
+    top:70px;
+    right: 40px;
+    height: 240px;
+    z-index: 3;
+    background-color: aliceblue;
+    border-radius: 10px;
+    box-shadow: 3px 3px 2px #ccc;
+}
+/*机组信息详细列表*/
+.pilot {
+    display: none;
+    position: fixed;
+    top: 65px;
+    left: 0px;
+    height: 93%;
+    z-index: 3;
+    background-color: aliceblue;
+    box-shadow: 3px 3px 2px #ccc;
+}
+.pilot > .leaflet-proxy leaflet-zoom-animated {
+    position: absolute;
+    float: left;
+    z-index: 5;
+}
+/*机组详情列表题目*/
+.title {
+    display: none;
+    position: fixed;
+    top: 130px;
+    left: 0px;
+    width: 402px;
+    height: 50px;
+    z-index: 5;
+    border-radius: 10px;
+    background-color: black;
+
+}
+/*飞机图片，暂时都是SKYline的*/
+.titpic {
+    display:none;
+    position: fixed;
+    top: 155px;
+    left: 0px;
+    width: 402px;
+    height: 200px;
+    z-index: 6;
+}
+/*起飞落地机场信息，没导航数据而且不会vue，手动敲出来*/
+.flight {
+    display: none;
+    position: fixed;
+    top: 355px;
+    left: 0px;
+    width: 402px;
+    height: 100px;
+    background-color: aliceblue;
+    z-index: 5;
+}
+/*依然是手动敲出来的。。。。(*/
+.flight-text-dep {
+    display: none;
+    position: fixed;
+    top: 350px;
+    left: 60px;
+    width: 130px;
+    height: 20px;
+    z-index: 6;
+}
+.flight-text-arr {
+    display: none;
+    position: fixed;
+    top: 350px;
+    left: 263px;
+    width: 130px;
+    height: 20px;
+    z-index: 6;
+}
+.flight-main-dep {
+    display: none;
+    position: fixed;
+    top: 370px;
+    left: 50px;
+    width: 130px;
+    height: 70px;
+    z-index: 7;
+}
+.flight-main-arr {
+    display: none;
+    position: fixed;
+    top: 370px;
+    left: 252px;
+    height: 70px;
+    z-index: 7;
+}
+.flight-icon {
+    display: none;
+    position: fixed;
+    top: 368px;
+    left: 185px;
+    height: 70px;
+    z-index: 7;
+}
+/*飞行数据。什么？还需要vue？得了，不会。还是手敲吧*/
+.dscallsign {
+    display: none;
+    position: fixed;
+    top: 455px;
+    width: 402px;
+    left: 0px;
+    height: 40px;
+    z-index: 7;
+    background-color: #2F4E7C;
+}
+.dscallsign-main {
+    display: none;
+    position: fixed;
+    top: 437px;
+    width: 402px;
+    left: 50px;
+    height: 40px;
+    z-index: 7;
+}
+/*手写，FSD记录的飞行主要数据*/
+.data {
+    display: none;
+    position: fixed;
+    top: 495px;
+    width: 402px;
+    left: 0px;
+    z-index: 7;
+    height: 180px;
+    background-color: aliceblue;
+}
+.data-text-type {
+    display: none;
+    position: fixed;
+    top: 490px;
+    width: 140px;
+    left: 58px;
+    height: 30px;
+}
+.data-text-heading {
+    display: none;
+    position: fixed;
+    top: 490px;
+    width: 140px;
+    left: 250px;
+    height: 30px;
+}
+.data-main-type {
+    display: none;
+    position: fixed;
+    top: 515px;
+    width: 140px;
+    left: 53px;
+    height: 30px;
+}
+.data-main-heading {
+    display: none;
+    position: fixed;
+    top: 515px;
+    width: 140px;
+    left: 266px;
+    height: 30px;
+}
+.data-text-alt {
+    display: none;
+    position: fixed;
+    top: 545px;
+    width: 140px;
+    left: 40px;
+    height: 30px;
+}
+
+.data-text-swk {
+    display: none;
+    position: fixed;
+    top: 545px;
+    width: 140px;
+    left: 256px;
+    height: 30px;
+}
+.data-main-alt {
+    display: none;
+    position: fixed;
+    top: 570px;
+    width: 140px;
+    left: 48px;
+    height: 30px;
+}
+
+.data-main-swk {
+    display: none;
+    position: fixed;
+    top: 570px;
+    width: 140px;
+    left: 260px;
+    height: 30px;
+}
+.data-text-spd {
+    display: none;
+    position: fixed;
+    top: 595px;
+    width: 140px;
+    left: 40px;
+    height: 30px;
+}
+
+.data-text-plt {
+    display: none;
+    position: fixed;
+    top: 595px;
+    width: 140px;
+    left: 250px;
+    height: 30px;
+}
+.data-main-spd {
+    display: none;
+    position: fixed;
+    top: 620px;
+    width: 140px;
+    left: 60px;
+    height: 30px;
+}
+
+.data-main-plt {
+    display: none;
+    position: fixed;
+    top: 620px;
+    width: 140px;
+    left: 250px;
+    height: 30px;
+}
+/*航路信息*/
+.route {
+    display: none;
+    position: fixed;
+    top: 675px;
+    width: 402px;
+    left: 0px;
+    height: 30px;
+    z-index: 7;
+    background-color: #2F4E7C;
+}
+
+.route-title {
+    display: none;
+    position: fixed;
+    top: 655px;
+    width: 402px;
+    left: 50px;
+    height: 30px;
+    z-index: 7;
+}
+.route-main {
+    display: none;
+    position: fixed;
+    top: 705px;
+    width: 402px;
+    left: 0px;
+    height: 140px;
+    z-index: 7;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+.route-con {
+    display: none;
+    position: fixed;
+    top: 693px;
+    width: 380px;
+    left: 20px;
+    z-index: 8;
+}
+/*管制员信息，不会vue，手动div*/
+.atctitle {
+    display: none;
+    position: fixed;
+    top: 130px;
+    left: 0px;
+    width: 402px;
+    height: 30px;
+    z-index: 4;
+    border-radius: 10px;
+    background-color: black;
+}
+.atcti {
+    display: none;
+    position: fixed;
+    top: 155px;
+    width: 402px;
+    left: 0px;
+    height: 40px;
+    z-index: 4;
+    background-color: #2F4E7C;
+}
+
+.atcti-main {
+    display: none;
+    position: fixed;
+    top: 135px;
+    width: 402px;
+    left: 50px;
+    height: 40px;
+    z-index: 7;
+}
+.atcdata {
+    display: none;
+    position: fixed;
+    top: 194px;
+    width: 402px;
+    left: 0px;
+    z-index: 7;
+    height: 180px;
+    background-color: aliceblue;
+}
+
+.atcdata-text-callsign {
+    display: none;
+    position: fixed;
+    top: 185px;
+    width: 140px;
+    left: 58px;
+    height: 30px;
+}
+
+.atcdata-text-call {
+    display: none;
+    position: fixed;
+    top: 185px;
+    width: 140px;
+    left: 270px;
+    height: 30px;
+}
+
+.atcdata-main-callsign {
+    display: none;
+    position: fixed;
+    top: 210px;
+    width: 140px;
+    left: 45px;
+    height: 30px;
+}
+
+.atcdata-main-call {
+    display: none;
+    position: fixed;
+    top: 210px;
+    width: 140px;
+    left: 250px;
+    height: 30px;
+}
+
+.atcdata-text-can {
+    display: none;
+    position: fixed;
+    top: 240px;
+    width: 140px;
+    left: 40px;
+    height: 30px;
+}
+
+.atcdata-text-range {
+    display: none;
+    position: fixed;
+    top: 240px;
+    width: 140px;
+    left: 256px;
+    height: 30px;
+}
+
+.atcdata-main-can {
+    display: none;
+    position: fixed;
+    top: 263px;
+    width: 140px;
+    left: 48px;
+    height: 30px;
+}
+
+.atcdata-main-range {
+    display: none;
+    position: fixed;
+    top: 263px;
+    width: 140px;
+    left: 270px;
+    height: 30px;
+}
+
+.atcdata-text-rate {
+    display: none;
+    position: fixed;
+    top: 290px;
+    width: 140px;
+    left: 40px;
+    height: 30px;
+}
+
+.atcdata-text-plt {
+    display: none;
+    position: fixed;
+    top: 290px;
+    width: 140px;
+    left: 250px;
+    height: 30px;
+}
+
+.atcdata-main-rate {
+    display: none;
+    position: fixed;
+    top: 315px;
+    width: 140px;
+    left: 40px;
+    height: 30px;
+}
+
+.atcdata-main-plt {
+    display: none;
+    position: fixed;
+    top: 315px;
+    width: 140px;
+    left: 250px;
+    height: 30px;
+}
